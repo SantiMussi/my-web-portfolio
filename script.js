@@ -3,7 +3,7 @@ const translations = {
         "nav.about": "Sobre mí", "nav.experience": "Experiencia", "nav.projects": "Proyectos", "nav.tech": "Skills", "nav.contact": "Contacto",
         "hero.badge": "Disponible para trabajar", "hero.greeting": "Hola, soy", "hero.subtitle": "Full-Stack Developer · Estudiante de Ingeniería Informática",
         "hero.cta1": "Ver proyectos", "hero.cta2": "Hablemos", "hero.scroll": "scroll",
-        "about.title": "Sobre mí", "about.quote": "Curiosidad constante, arquitectura sólida y ganas de ir siempre un paso más allá.",
+        "about.title": "Sobre mí", "about.quote": "Curiosidad constante, arquitectura sólida, un gran entusiasmo por la ciberseguridad y ganas de ir siempre un paso más allá.",
         "about.p1": "Soy un desarrollador full-stack de Buenos Aires, Argentina, con una base sólida en tecnologías backend y web. Estoy constantemente aprendiendo, construyendo y buscando formas creativas de resolver problemas del mundo real a través del código.",
         "about.p2": "He desarrollado aplicaciones móviles enfocadas en el bienestar mental, administrado comunidades en línea a través de servidores de juegos, y construido proyectos web full-stack que combinan diseño limpio con funcionalidad práctica.",
         "about.p3": "Actualmente estoy estudiando Ingeniería en Informática en UADE y continúo expandiendo mis habilidades a través de proyectos prácticos.",
@@ -20,7 +20,14 @@ const translations = {
         "exp.edu1Title": "Ingeniería en Informática", "exp.edu1Desc": "UADE – Especialización en desarrollo de software y arquitectura de sistemas distribuidos.",
         "exp.edu2Title": "Aprendizaje Autodidacta", "exp.edu2Desc": "Profundización en tecnologías web, cloud y backend mediante plataformas online y proyectos personales.",
         "exp.edu3Title": "Curso de Desarrollo Web", "exp.edu3Desc": "Curso introductorio en secundario: HTML, CSS, JavaScript y principios de diseño web.",
-        "proj.title": "Proyectos", "proj.live": "Demo", "proj.visit": "Visitar",
+        "proj.title": "Proyectos", "proj.live": "Demo", "proj.visit": "Visitar", "proj.featuredBadge": "Destacado",
+        "proj.feat1Title": "Centro de Ayuda Municipal",
+        "proj.feat1ChallengeTitle": "El Desafío", "proj.feat1Challenge": "Conectar múltiples servicios de aplicaciones manteniendo una experiencia de cliente consistente y los límites de integración claros.",
+        "proj.feat1SolutionTitle": "La Solución", "proj.feat1Solution": "Un frontend basado en componentes que coordina los flujos de la aplicación y consume las APIs de servicio del equipo a través de capas de integración reutilizables.",
+        "proj.feat2Title": "Dashboard de Robot en Vivo",
+        "proj.feat2ChallengeTitle": "El Desafío", "proj.feat2Challenge": "Hacer que un flujo de eventos de robot sea fácil de monitorear sin perder el contexto operativo actual.",
+        "proj.feat2SolutionTitle": "La Solución", "proj.feat2Solution": "El dashboard convierte las actualizaciones entrantes en una interfaz a simple vista para rastrear el estado y la actividad a medida que cambian.",
+        "proj.feat2ModelingTitle": "Modelado 3D", "proj.feat2Modeling": "Diseñé y articulé en Blender una réplica 3D del robot (Unitree G1 y G2) que imita en tiempo real sus movimientos en el mundo real.",
         "proj.p1Title": "Analizador de Métodos Numéricos",
         "proj.p1Desc": "Plataforma interactiva para visualización y análisis de modelos matemáticos y simulaciones computacionales.",
         "proj.p2Desc": "Simulación y optimización de estrategias en F1. Métodos numéricos y ML integrados con datos de telemetría.",
@@ -44,7 +51,7 @@ const translations = {
         "nav.about": "About", "nav.experience": "Experience", "nav.projects": "Projects", "nav.tech": "Skills", "nav.contact": "Contact",
         "hero.badge": "Available for work", "hero.greeting": "Hi, I'm", "hero.subtitle": "Full-Stack Developer · Computer Engineering Student",
         "hero.cta1": "View projects", "hero.cta2": "Let's talk", "hero.scroll": "scroll",
-        "about.title": "About me", "about.quote": "Constant curiosity, solid architecture, and the drive to always go one step further.",
+        "about.title": "About me", "about.quote": "Constant curiosity, solid architecture, a strong enthusiasm for cybersecurity, and the drive to always go one step further.",
         "about.p1": "I'm a full-stack developer from Buenos Aires, Argentina, with a solid foundation in backend and web technologies. I'm constantly learning, building, and looking for creative ways to solve real-world problems through code.",
         "about.p2": "I've developed mobile apps focused on mental well-being, managed online communities through game server administration, and built full-stack web projects that blend clean design with practical functionality.",
         "about.p3": "I'm currently studying Computer Engineering at UADE and continue expanding my skills through hands-on projects.",
@@ -61,7 +68,14 @@ const translations = {
         "exp.edu1Title": "Computer Engineering", "exp.edu1Desc": "UADE – Specialization in software development and distributed systems architecture.",
         "exp.edu2Title": "Self-Learning Path", "exp.edu2Desc": "Deepened knowledge in web technologies, cloud fundamentals, and backend systems through online platforms and personal projects.",
         "exp.edu3Title": "Web Development Course", "exp.edu3Desc": "Introductory web development course in high school: HTML, CSS, JavaScript, and basic web design principles.",
-        "proj.title": "Projects", "proj.live": "Live", "proj.visit": "Visit",
+        "proj.title": "Projects", "proj.live": "Live", "proj.visit": "Visit", "proj.featuredBadge": "Featured",
+        "proj.feat1Title": "Municipal Help Center",
+        "proj.feat1ChallengeTitle": "The challenge", "proj.feat1Challenge": "Connect multiple application services while keeping the client experience consistent and the integration boundaries clear.",
+        "proj.feat1SolutionTitle": "The solution", "proj.feat1Solution": "A component-based frontend coordinates the application flows and consumes the team’s service APIs through reusable integration layers.",
+        "proj.feat2Title": "Robot Live Dashboard",
+        "proj.feat2ChallengeTitle": "The challenge", "proj.feat2Challenge": "Make a stream of robot events easy to monitor without losing the current operational context.",
+        "proj.feat2SolutionTitle": "The solution", "proj.feat2Solution": "The dashboard turns incoming updates into an at-a-glance interface for tracking state and activity as they change.",
+        "proj.feat2ModelingTitle": "3D Modeling", "proj.feat2Modeling": "I designed and rigged a 3D replica of the robot (Unitree G1 and G2) in Blender that mimics its real-world movements in real time.",
         "proj.p1Title": "Numerical Methods Analyzer",
         "proj.p1Desc": "Interactive platform for visualization and analysis of mathematical models and computational simulations.",
         "proj.p2Desc": "F1 strategy simulation and optimization. Numerical methods and ML integrated with telemetry data.",
@@ -225,20 +239,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal-up, .reveal-text').forEach(el => revealObserver.observe(el));
 
-const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const level = entry.target.dataset.level;
-            const fill = entry.target.querySelector('.bar-fill');
-            if (fill && level) {
-                setTimeout(() => { fill.style.width = level + '%'; }, 150);
-            }
-            barObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.3 });
 
-document.querySelectorAll('.bar-row').forEach(row => barObserver.observe(row));
 
 document.querySelectorAll('.tilt-card').forEach(card => {
     card.addEventListener('mousemove', e => {
