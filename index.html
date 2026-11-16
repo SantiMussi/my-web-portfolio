@@ -15,7 +15,7 @@
     <meta name="twitter:image" content="https://santimussi.com/imgs/og-preview.png">
     <title>Santiago Mussi – Developer</title>
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
@@ -181,8 +181,7 @@
         
         <div class="featured-projects">
             
-            <div class="featured-card reveal-up" style="--card-accent: #b89b72; --card-accent-rgb: 184, 155, 114;">
-                <div class="featured-glow"></div>
+            <div class="featured-card feat-martineau reveal-up">
                 <div class="featured-img-wrap">
                     <img src="imgs/martineau.jpg" alt="Martineau Studio">
                 </div>
@@ -209,8 +208,7 @@
                 </div>
             </div>
 
-            <div class="featured-card reveal-up" data-delay="1" style="--card-accent: #3b82f6; --card-accent-rgb: 59, 130, 246;">
-                <div class="featured-glow"></div>
+            <div class="featured-card feat-municipal reveal-up" data-delay="1">
                 <div class="featured-content">
                     <span class="featured-badge" data-i18n="proj.featuredBadge">Destacado</span>
                     <h3 data-i18n="proj.feat1Title">Centro de Ayuda Municipal</h3>
@@ -234,13 +232,21 @@
                 </div>
                 <div class="featured-img-wrap">
                     <img src="imgs/atencionciudadana.png" alt="Municipal Help Center">
+                    <span class="stamp" aria-hidden="true" data-i18n="proj.stamp">Resuelto</span>
                 </div>
             </div>
 
-            <div class="featured-card reveal-up" style="--card-accent: #f43f5e; --card-accent-rgb: 244, 63, 94;">
-                <div class="featured-glow"></div>
+            <div class="featured-card feat-robot reveal-up">
                 <div class="featured-img-wrap">
                     <img src="imgs/robotdashboard.png" alt="Robot Live Dashboard">
+                    <span class="scan"></span>
+                    <div class="hud" aria-hidden="true">
+                        <span class="hud-tl">LIVE</span>
+                        <span class="hud-tr" data-hud="tick">T+000.0s</span>
+                        <span class="hud-bl" data-hud="joint">JOINT 00 &middot; 00.0&deg;</span>
+                        <span class="hud-br" data-hud="xy">X 0.00 &nbsp;Y 0.00</span>
+                    </div>
+                    <span class="reticle"></span>
                 </div>
                 <div class="featured-content">
                     <span class="featured-badge" data-i18n="proj.featuredBadge">Destacado</span>
@@ -270,8 +276,7 @@
                 </div>
             </div>
 
-            <div class="featured-card reveal-up" data-delay="1" style="--card-accent: #b3363a; --card-accent-rgb: 179, 54, 58;">
-                <div class="featured-glow"></div>
+            <div class="featured-card feat-paula reveal-up" data-delay="1">
                 <div class="featured-content">
                     <span class="featured-badge" data-i18n="proj.featuredBadge">Destacado</span>
                     <h3 data-i18n="proj.feat4Title">Paula de Elia Studio</h3>

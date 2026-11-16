@@ -20,7 +20,7 @@ const translations = {
         "exp.edu1Title": "Ingeniería en Informática", "exp.edu1Desc": "UADE – Especialización en desarrollo de software y arquitectura de sistemas distribuidos.",
         "exp.edu2Title": "Aprendizaje Autodidacta", "exp.edu2Desc": "Profundización en tecnologías web, cloud y backend mediante plataformas online y proyectos personales.",
         "exp.edu3Title": "Curso de Desarrollo Web", "exp.edu3Desc": "Curso introductorio en secundario: HTML, CSS, JavaScript y principios de diseño web.",
-        "proj.title": "Proyectos", "proj.live": "Demo", "proj.visit": "Visitar", "proj.featuredBadge": "Destacado",
+        "proj.title": "Proyectos", "proj.live": "Demo", "proj.visit": "Visitar", "proj.featuredBadge": "Destacado", "proj.stamp": "Resuelto",
         "proj.feat1Title": "Centro de Ayuda Municipal",
         "proj.feat1ChallengeTitle": "El Desafío", "proj.feat1Challenge": "Conectar múltiples servicios de aplicaciones manteniendo una experiencia de cliente consistente y los límites de integración claros.",
         "proj.feat1SolutionTitle": "La Solución", "proj.feat1Solution": "Un frontend basado en componentes que coordina los flujos de la aplicación y consume las APIs de servicio del equipo a través de capas de integración reutilizables.",
@@ -75,7 +75,7 @@ const translations = {
         "exp.edu1Title": "Computer Engineering", "exp.edu1Desc": "UADE – Specialization in software development and distributed systems architecture.",
         "exp.edu2Title": "Self-Learning Path", "exp.edu2Desc": "Deepened knowledge in web technologies, cloud fundamentals, and backend systems through online platforms and personal projects.",
         "exp.edu3Title": "Web Development Course", "exp.edu3Desc": "Introductory web development course in high school: HTML, CSS, JavaScript, and basic web design principles.",
-        "proj.title": "Projects", "proj.live": "Live", "proj.visit": "Visit", "proj.featuredBadge": "Featured",
+        "proj.title": "Projects", "proj.live": "Live", "proj.visit": "Visit", "proj.featuredBadge": "Featured", "proj.stamp": "Resolved",
         "proj.feat1Title": "Municipal Help Center",
         "proj.feat1ChallengeTitle": "The challenge", "proj.feat1Challenge": "Connect multiple application services while keeping the client experience consistent and the integration boundaries clear.",
         "proj.feat1SolutionTitle": "The solution", "proj.feat1Solution": "A component-based frontend coordinates the application flows and consumes the team’s service APIs through reusable integration layers.",
@@ -274,31 +274,65 @@ document.querySelectorAll('.tilt-card').forEach(card => {
 const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (hasFinePointer && !prefersReducedMotion) {
-    document.querySelectorAll('.featured-card').forEach(card => {
-        let raf = 0;
-        card.addEventListener('mouseenter', () => card.classList.add('is-hover'));
-        card.addEventListener('mousemove', e => {
-            cancelAnimationFrame(raf);
-            raf = requestAnimationFrame(() => {
-                const r = card.getBoundingClientRect();
-                const x = (e.clientX - r.left) / r.width;
-                const y = (e.clientY - r.top) / r.height;
-                card.style.setProperty('--mx', `${x * 100}%`);
-                card.style.setProperty('--my', `${y * 100}%`);
-                card.style.setProperty('--ry', `${(x - 0.5) * 4}deg`);
-                card.style.setProperty('--rx', `${(0.5 - y) * 3}deg`);
-                card.style.setProperty('--px', `${(x - 0.5) * -16}px`);
-                card.style.setProperty('--py', `${(y - 0.5) * -12}px`);
-            });
+if (hasFinePointer) {
+    // Martineau: inspection loupe over the plaque
+    document.querySelectorAll('.feat-martineau .featured-img-wrap').forEach(wrap => {
+        const img = wrap.querySelector('img');
+        const loupe = document.createElement('div');
+        loupe.className = 'loupe';
+        wrap.appendChild(loupe);
+        const ZOOM = 2.4;
+        wrap.addEventListener('mousemove', e => {
+            if (!img.naturalWidth) return;
+            const r = wrap.getBoundingClientRect();
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;
+            const cs = getComputedStyle(img);
+            const pad = parseFloat(cs.left) || 0;
+            const w = img.clientWidth, h = img.clientHeight;
+            const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+            const rw = img.naturalWidth * scale, rh = img.naturalHeight * scale;
+            const ox = pad + (w - rw) / 2, oy = pad;
+            const L = loupe.offsetWidth;
+            loupe.style.left = `${x}px`;
+            loupe.style.top = `${y}px`;
+            loupe.style.backgroundImage = `url("${img.currentSrc || img.src}")`;
+            loupe.style.backgroundSize = `${rw * ZOOM}px ${rh * ZOOM}px`;
+            loupe.style.backgroundPosition = `${-((x - ox) * ZOOM - L / 2)}px ${-((y - oy) * ZOOM - L / 2)}px`;
         });
-        card.addEventListener('mouseleave', () => {
-            cancelAnimationFrame(raf);
-            card.classList.remove('is-hover');
-            ['--rx', '--ry', '--px', '--py'].forEach(p => card.style.removeProperty(p));
+    });
+
+    // Robot: reticle that follows the cursor and reads out coordinates
+    document.querySelectorAll('.feat-robot .featured-img-wrap').forEach(wrap => {
+        const reticle = wrap.querySelector('.reticle');
+        const xy = wrap.querySelector('[data-hud="xy"]');
+        wrap.addEventListener('mousemove', e => {
+            const r = wrap.getBoundingClientRect();
+            const x = e.clientX - r.left, y = e.clientY - r.top;
+            reticle.style.left = `${x}px`;
+            reticle.style.top = `${y}px`;
+            xy.textContent = `X ${(x / r.width).toFixed(2)}  Y ${(y / r.height).toFixed(2)}`;
         });
     });
 }
+
+// Robot: fake live telemetry that ticks while the card is on screen
+(() => {
+    const card = document.querySelector('.feat-robot');
+    if (!card || prefersReducedMotion) return;
+    const tick = card.querySelector('[data-hud="tick"]');
+    const joint = card.querySelector('[data-hud="joint"]');
+    let t = 0, onScreen = false;
+    new IntersectionObserver(es => { onScreen = es[0].isIntersecting; }).observe(card);
+    setInterval(() => {
+        if (!onScreen || document.hidden) return;
+        t += 0.1;
+        tick.textContent = `T+${t.toFixed(1).padStart(5, '0')}s`;
+        const j = 1 + Math.floor((t * 2) % 29);
+        const a = 40 * Math.sin(t * 1.3 + j) + 20 * Math.sin(t * 0.7);
+        joint.textContent = `JOINT ${String(j).padStart(2, '0')} · ${a.toFixed(1)}°`;
+    }, 100);
+})();
 
 document.querySelectorAll('.magnetic').forEach(el => {
     el.addEventListener('mousemove', e => {
