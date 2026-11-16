@@ -271,6 +271,35 @@ document.querySelectorAll('.tilt-card').forEach(card => {
     });
 });
 
+const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (hasFinePointer && !prefersReducedMotion) {
+    document.querySelectorAll('.featured-card').forEach(card => {
+        let raf = 0;
+        card.addEventListener('mouseenter', () => card.classList.add('is-hover'));
+        card.addEventListener('mousemove', e => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width;
+                const y = (e.clientY - r.top) / r.height;
+                card.style.setProperty('--mx', `${x * 100}%`);
+                card.style.setProperty('--my', `${y * 100}%`);
+                card.style.setProperty('--ry', `${(x - 0.5) * 4}deg`);
+                card.style.setProperty('--rx', `${(0.5 - y) * 3}deg`);
+                card.style.setProperty('--px', `${(x - 0.5) * -16}px`);
+                card.style.setProperty('--py', `${(y - 0.5) * -12}px`);
+            });
+        });
+        card.addEventListener('mouseleave', () => {
+            cancelAnimationFrame(raf);
+            card.classList.remove('is-hover');
+            ['--rx', '--ry', '--px', '--py'].forEach(p => card.style.removeProperty(p));
+        });
+    });
+}
+
 document.querySelectorAll('.magnetic').forEach(el => {
     el.addEventListener('mousemove', e => {
         const rect = el.getBoundingClientRect();
